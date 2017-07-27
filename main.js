@@ -1,26 +1,3 @@
-var c = document.getElementById('canvas');
-var ctx = c.getContext('2d');
-
-
-document.addEventListener('keydown',function (e) {
-  switch (e.keyCode) {
-    case 37: //left
-      player.x--;
-      break;
-    case 39: //right
-      player.x++;
-      break;
-    case 38: //up
-      player.y--;
-      break;
-    case 40: //down
-      player.y++;
-      break;
-    default:
-      break;
-  }
-  update();
-},false);
 
 
 //creates map
@@ -39,15 +16,22 @@ function pixel(char, x, y) {
   this.x = x;
   this.y = y;
   this.char = char;
-  this.update = function () {
-    ctx.fillText(this.char,this.x,this.y);
-  }
 }
 
-var player = {
-  x : Math.floor(map.length/2),
-  y : Math.floor(map[0].length/2),
-  char : "0",
+function player(){
+  this.x = Math.floor(map.length/2);
+  this.y = Math.floor(map[0].length/2);
+  this.char = "0";
 }
+
+function wall(x,y){
+  this.x = x;
+  this.y = y;
+  this.char = '#';
+}
+
+var objects = [];
+objects.push(new player());
+objects.push(new wall(5,5));
 
 update();

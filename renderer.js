@@ -7,14 +7,18 @@ var emptyChar = "/";
 
 function update(){
   ctx.clearRect(0,0,c.width,c.height);
+
+  for (var i = 0; i < objects.length; i++) {
+    map[objects[i].x][objects[i].y].char = objects[i].char;
+  }
+
   for (var x = 0; x < map.length; x++) {
     for (var y = 0; y < map[0].length; y++) {
-      if (player.x == x && player.y == y) {
-        map[x][y].char = player.char;
-      } else {
-        map[x][y].char = emptyChar;
-      }
-      map[x][y].update();
+      //draw everything
+      ctx.fillText(map[x][y].char, map[x][y].x, map[x][y].y);
+
+      //reset all background chars
+      map[x][y].char =  emptyChar;
     }
   }
 }
