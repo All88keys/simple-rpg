@@ -1,8 +1,8 @@
 //Declaration
-var resolution = 40; //viewable spcaes on screen
+var resolution = c.width/30; //viewable spcaes on screen
 var blockSize = c.width/resolution;
-ctx.font = blockSize+ "px sans-serif"; //font
-var emptyChar = "."; //character to define open space
+ctx.font = "100 "+blockSize+ "px Courier New"; //font | Lucida Console | Courier New
+var emptyChar = ""; //character to define open space
 var onScreen = []; //list of objects on screen
 
 //creates screenMap
@@ -23,7 +23,11 @@ function pixel(char, x, y) {
 }
 
 function update(){
-  ctx.clearRect(0,0,c.width,c.height);
+  ctx.beginPath();
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0,0,c.width,c.height);
+  ctx.beginPath();
+  ctx.fillStyle = 'white';
 
   physics();
 

@@ -12,6 +12,7 @@ function physics() {
     }
   }
 
+  //apply player physics
   objects[0].x = objects[0].expectedX;
   objects[0].y = objects[0].expectedY;
 }

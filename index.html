@@ -6,15 +6,22 @@
     <style media="screen">
       canvas{
         border: 1px solid black;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: fixed;
       }
     </style>
   </head>
   <body>
-    <canvas id="canvas" width="800" height="800"></canvas>
+    <canvas id="canvas" ></canvas>
   </body>
   <script type="text/javascript">
     var c = document.getElementById('canvas');
     var ctx = c.getContext('2d');
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
   </script>
   <script src="physics.js" charset="utf-8"></script>
   <script src="renderer.js" charset="utf-8"></script>
