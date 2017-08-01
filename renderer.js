@@ -1,5 +1,5 @@
 //Declaration
-var resolution = 25; //viewable spcaes on screen
+var resolution = 40; //viewable spcaes on screen
 var blockSize = c.width/resolution;
 ctx.font = blockSize+ "px sans-serif"; //font
 var emptyChar = "."; //character to define open space
