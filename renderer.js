@@ -1,24 +1,49 @@
-var resolution = 25;
+//Declaration
+var resolution = 25; //viewable spcaes on screen
 var blockSize = c.width/resolution;
+ctx.font = blockSize+ "px sans-serif"; //font
+var emptyChar = "."; //character to define open space
+var onScreen = []; //list of objects on screen
 
-ctx.font = blockSize+ "px sans-serif";
+//creates screenMap
+var screenMap = [];
 
-var emptyChar = "/";
+//populates screenMap depending on resolution size
+for (var x = 0; x < resolution; x++) {
+  screenMap.push(new Array());
+  for (var y = 0; y < resolution; y++) {
+    screenMap[x][y] = new pixel(emptyChar, x*blockSize+(1/resolution*100), y*blockSize+blockSize-(1/resolution*100));
+  }
+}
+
+function pixel(char, x, y) {
+  this.x = x;
+  this.y = y;
+  this.char = char;
+}
 
 function update(){
   ctx.clearRect(0,0,c.width,c.height);
 
+  physics();
+
+  onScreen = [];
   for (var i = 0; i < objects.length; i++) {
-    map[objects[i].x][objects[i].y].char = objects[i].char;
+    if (objects[i].x<screenMap.length && objects[i].x>=0 && objects[i].y<screenMap[0].length && objects[i].y>=0) {
+          screenMap[objects[i].x][objects[i].y].char = objects[i].char; //change corresponding char on screen
+          onScreen.push(i);
+    } else {
+      onScreen.splice(onScreen.indexOf(i),1);
+    }
   }
 
-  for (var x = 0; x < map.length; x++) {
-    for (var y = 0; y < map[0].length; y++) {
+  for (var x = 0; x < screenMap.length; x++) {
+    for (var y = 0; y < screenMap[0].length; y++) {
       //draw everything
-      ctx.fillText(map[x][y].char, map[x][y].x, map[x][y].y);
+      ctx.fillText(screenMap[x][y].char, screenMap[x][y].x, screenMap[x][y].y);
 
       //reset all background chars
-      map[x][y].char =  emptyChar;
+      screenMap[x][y].char =  emptyChar;
     }
   }
 }
