@@ -1,9 +1,9 @@
 //Declaration
-var resolution = c.width/40; //viewable spcaes on screen
-var yresolution = resolution/2;
-var blockSize = c.width/resolution
+var resolution = 70; //viewable spcaes on screen
+var yresolution = resolution*9/16;
+var blockSize = c.width/resolution;
 var emptyChar = "."; //character to define open space
-var emptyColor = 'white'//'#060606';//color to define open space
+var emptyColor = '#060606';//color to define open space
 var scrollThreshold = 4; //threshold for screen to start scrolling;
 var onScreen = []; //list of objects on screen
 
