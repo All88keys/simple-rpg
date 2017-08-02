@@ -23,3 +23,5 @@ document.addEventListener('keydown',function (e) {
   }
   update();
 },false);
+
+update();
