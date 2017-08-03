@@ -9,7 +9,7 @@ function physics() {
         break;
       default:break;
     }
-  }*/
+  }*/ // NOTE: this^^ is for onscreen objects. that\/ is for every object.
 
   for (var i = 0; i < objects.length; i++) {
     switch (objects[i].type) {

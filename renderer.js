@@ -31,17 +31,9 @@ function pixel(char, x, y, color) {
   this.color = color;
 }
 
-function update(){
-  ctx.font = "100 "+blockSize+ "px Courier New"; //font | Lucida Console | Courier New
-  ctx.beginPath();
-  ctx.fillStyle = 'black';
-  ctx.fillRect(0,0,c.width,c.height);
-  ctx.beginPath();
-
-
-  physics();
-
-  if (objects[0].x-screen.x<scrollThreshold) {
+function render() {
+  //scrolls with player
+  /*if (objects[0].x-screen.x<scrollThreshold) {
     screen.x = objects[0].x-scrollThreshold;
   }
   if ((screen.x+screenMap.length)-objects[0].x<scrollThreshold+1) {
@@ -52,7 +44,9 @@ function update(){
   }
   if ((screen.y+screenMap[0].length)-objects[0].y<scrollThreshold+1) {
     screen.y = objects[0].y+scrollThreshold+1-screenMap[0].length;
-  }
+  }*/
+  screen.x = objects[0].x-screenMap.length/2;
+  screen.y = objects[0].y-screenMap[0].length/2;
 
   onScreen = [];
   for (var i = objects.length-1; i >= 0 ; i--) {

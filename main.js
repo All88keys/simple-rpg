@@ -24,34 +24,45 @@
             ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
             ['#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '.', '.', '.', '.', '.', '#', '.', '.', '.', '.', '#', '.', '#', '#'],
             ['#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '#']];*/
+update();
 
-function player(x,y){
-  this.type = "player";
-  this.x = x;//Math.floor(screenMap.length/2);
-  this.y = y;//Math.floor(screenMap[0].length/2);
-  this.expectedX = x;
-  this.expectedY = y;
-  this.char = "☻";
-  this.color = 'lime';
+function update(){
+  ctx.font = "100 "+blockSize+ "px Courier New"; //font | Lucida Console | Courier New
+  ctx.beginPath();
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0,0,c.width,c.height);
+  ctx.beginPath();
+
+  physics();
+  render();
 }
 
-function wall(x,y){
-  this.type = "wall";
-  this.x = x;
-  this.y = y;
-  this.char = '#';
-  this.color = 'white';
-}
-
-function decoration(x,y,char){
-  this.type = 'decoration';
-  this.x = x;
-  this.y = y;
-  this.char = char;
-  this.color = 'gray';
-}
-
-var objects = [];
+//input
+document.addEventListener('keydown',function (e) {
+  switch (e.keyCode) {
+    case 37: //left
+      //objects[0].x--;
+      objects[0].expectedX = objects[0].x-1;
+      console.log('left');
+      break;
+    case 39: //right
+      //objects[0].x++;
+      objects[0].expectedX = objects[0].x+1;
+      console.log('right');
+      break;
+    case 38: //up
+      objects[0].expectedY = objects[0].y-1;
+      console.log('up');
+      break;
+    case 40: //down
+      objects[0].expectedY = objects[0].y+1;
+      console.log('down');
+      break;
+    default:
+      break;
+  }
+  update();
+},false);
 //objects.push(new player(10,10));
 //objects.push(new wall(5,5));
 
