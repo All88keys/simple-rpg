@@ -32,6 +32,8 @@ var mouse = {
   xcoord: 0,
   ycoord: 0,
   clicked: false,
+  color: "red",
+  char: "♦"
 }
 document.addEventListener('mousemove',function (e) {mouse.x = e.pageX; mouse.y = e.pageY;
   mouse.xcoord = Math.floor(mouse.x/window.innerWidth*resolution)+screen.x;
@@ -68,7 +70,7 @@ function input() {
 
 var count = 0;
 function update(){
-  ctx.font = "100 "+blockSize+ "px Courier New"; //font | Lucida Console | Courier New
+  ctx.font = "500 "+blockSize+ "px Courier New"; //font | Lucida Console | Courier New
   ctx.beginPath();
   ctx.fillStyle = 'black';
   ctx.fillRect(0,0,c.width,c.height);

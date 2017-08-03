@@ -1,3 +1,5 @@
+var placeNoise = new Audio("wall.wav");
+
 function physics() {
   /*for (var i = 0; i < onScreen.length; i++) {
     switch (objects[onScreen[i]].type) {
@@ -12,15 +14,21 @@ function physics() {
   }*/ // NOTE: this^^ is for onscreen objects. that\/ is for every object.
 
   //run this if the mouse is clicked
-  if (mouse.clicked) {
+
     var free = true;
+    mouse.color = "red";
     for (var i = 0; i < objects.length; i++) {
       if (objects[i].x == mouse.xcoord && objects[i].y == mouse.ycoord) {
         free = false;
       }
     }
-    if(free){objects.push(new wall(mouse.xcoord, mouse.ycoord));}
-  }
+    if (free) {
+      mouse.color = "lime";
+      if(mouse.clicked){
+        objects.push(new wall(mouse.xcoord, mouse.ycoord));
+        placeNoise.play();
+      }
+    }
 
 
 

@@ -60,8 +60,9 @@ function render() {
     }
   }
 
-  screenMap[Math.floor(mouse.xcoord-screen.x)][Math.floor(mouse.ycoord-screen.y)].char = '8';
-  screenMap[Math.floor(mouse.xcoord-screen.x)][Math.floor(mouse.ycoord-screen.y)].color ='red';
+  //add mouse in
+  screenMap[Math.floor(mouse.xcoord-screen.x)][Math.floor(mouse.ycoord-screen.y)].char = mouse.char;
+  screenMap[Math.floor(mouse.xcoord-screen.x)][Math.floor(mouse.ycoord-screen.y)].color = mouse.color;
 
   for (var x = 0; x < screenMap.length; x++) {
     for (var y = 0; y < screenMap[0].length; y++) {
