@@ -6,15 +6,11 @@ var yresolution = resolution*9/16;
 var blockSize = c.width/resolution;
 var emptyChar = ""; //character to define open space
 var emptyColor = '#060606';//color to define open space
-var scrollThreshold = 4; //threshold for screen to start scrolling;
+var scrollThreshold = 15; //threshold for screen to start scrolling;
 var onScreen = []; //list of objects on screen
 
 //creates screenMap
 var screenMap = [];
-var screen = {
-  x: 0,
-  y: 0,
-}
 
 //populates screenMap depending on resolution size
 for (var x = 0; x < resolution; x++) {
@@ -22,6 +18,11 @@ for (var x = 0; x < resolution; x++) {
   for (var y = 0; y < yresolution; y++) {
     screenMap[x][y] = new pixel(emptyChar, x*blockSize+(1/resolution*100), y*blockSize+blockSize-(1/resolution*100),emptyColor);
   }
+}
+
+var screen = {
+  x: objects[0].x-screenMap.length/2,
+  y: objects[0].y-screenMap[0].length/2,
 }
 
 function pixel(char, x, y, color) {
@@ -33,7 +34,7 @@ function pixel(char, x, y, color) {
 
 function render() {
   //scrolls with player
-  /*if (objects[0].x-screen.x<scrollThreshold) {
+  if (objects[0].x-screen.x<scrollThreshold) {
     screen.x = objects[0].x-scrollThreshold;
   }
   if ((screen.x+screenMap.length)-objects[0].x<scrollThreshold+1) {
@@ -44,9 +45,9 @@ function render() {
   }
   if ((screen.y+screenMap[0].length)-objects[0].y<scrollThreshold+1) {
     screen.y = objects[0].y+scrollThreshold+1-screenMap[0].length;
-  }*/
-  screen.x = objects[0].x-screenMap.length/2;
-  screen.y = objects[0].y-screenMap[0].length/2;
+  }
+  //screen.x = objects[0].x-screenMap.length/2; //NOTE for locked character
+  //screen.y = objects[0].y-screenMap[0].length/2;
 
   onScreen = [];
   for (var i = objects.length-1; i >= 0 ; i--) {
@@ -59,6 +60,9 @@ function render() {
     }
   }
 
+  screenMap[Math.floor(mouse.xcoord-screen.x)][Math.floor(mouse.ycoord-screen.y)].char = '8';
+  screenMap[Math.floor(mouse.xcoord-screen.x)][Math.floor(mouse.ycoord-screen.y)].color ='red';
+
   for (var x = 0; x < screenMap.length; x++) {
     for (var y = 0; y < screenMap[0].length; y++) {
       //draw everything
@@ -70,4 +74,5 @@ function render() {
       screenMap[x][y].char =  emptyChar;
     }
   }
+
 }

@@ -24,45 +24,64 @@
             ['.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
             ['#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '.', '.', '.', '.', '.', '#', '.', '.', '.', '.', '#', '.', '#', '#'],
             ['#', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#', '#']];*/
-update();
 
+//input
+var mouse = {
+  x: 0,
+  y: 0,
+  xcoord: 0,
+  ycoord: 0,
+  clicked: false,
+}
+document.addEventListener('mousemove',function (e) {mouse.x = e.pageX; mouse.y = e.pageY;
+  mouse.xcoord = Math.floor(mouse.x/window.innerWidth*resolution)+screen.x;
+  mouse.ycoord = Math.floor(mouse.y/window.innerHeight*yresolution)+screen.y;}, false);
+document.addEventListener('mousedown',function (e) {mouse.clicked = true}, false);
+document.addEventListener('mouseup', function (e) {mouse.clicked = false}, false)
+
+
+var keymap = [];
+document.addEventListener('keydown',function (e) {keymap[e.keyCode] = true;}, false);
+document.addEventListener('keyup',function (e) {keymap[e.keyCode] = false;}, false)
+
+function input() {
+      if (keymap[37] || keymap[65]) {//left
+        //objects[0].x--;
+        objects[0].expectedX = objects[0].x-1;
+        console.log('left');
+      }
+      if (keymap[39] || keymap[68]) {//right
+        //objects[0].x++;
+        objects[0].expectedX = objects[0].x+1;
+        console.log('right');
+      }
+      if (keymap[38] || keymap[87]) {//up
+        objects[0].expectedY = objects[0].y-1;
+        console.log('up');
+      }
+      if (keymap[40] || keymap[83]) {//down
+        objects[0].expectedY = objects[0].y+1;
+        console.log('down');
+      }
+}
+
+
+var count = 0;
 function update(){
   ctx.font = "100 "+blockSize+ "px Courier New"; //font | Lucida Console | Courier New
   ctx.beginPath();
   ctx.fillStyle = 'black';
   ctx.fillRect(0,0,c.width,c.height);
   ctx.beginPath();
-
+  count%8 == 0 ? input() : false
   physics();
   render();
+  count++;
 }
 
-//input
-document.addEventListener('keydown',function (e) {
-  switch (e.keyCode) {
-    case 37: //left
-      //objects[0].x--;
-      objects[0].expectedX = objects[0].x-1;
-      console.log('left');
-      break;
-    case 39: //right
-      //objects[0].x++;
-      objects[0].expectedX = objects[0].x+1;
-      console.log('right');
-      break;
-    case 38: //up
-      objects[0].expectedY = objects[0].y-1;
-      console.log('up');
-      break;
-    case 40: //down
-      objects[0].expectedY = objects[0].y+1;
-      console.log('down');
-      break;
-    default:
-      break;
-  }
-  update();
-},false);
+
+setInterval(update,10);
+
 //objects.push(new player(10,10));
 //objects.push(new wall(5,5));
 
