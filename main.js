@@ -78,6 +78,7 @@ function update(){
   count%8 == 0 ? input() : false
   physics();
   render();
+  ui();
   count++;
 }
 

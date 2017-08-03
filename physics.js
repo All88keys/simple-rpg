@@ -18,14 +18,14 @@ function physics() {
     var free = true;
     mouse.color = "red";
     for (var i = 0; i < objects.length; i++) {
-      if (objects[i].x == mouse.xcoord && objects[i].y == mouse.ycoord) {
+      if (objects[i].x == mouse.xcoord && objects[i].y == mouse.ycoord && objects[i].type != 'decoration') {
         free = false;
       }
     }
     if (free) {
       mouse.color = "lime";
       if(mouse.clicked){
-        objects.push(new wall(mouse.xcoord, mouse.ycoord));
+        objects.splice(1, 0, new wall(mouse.xcoord, mouse.ycoord));
         placeNoise.play();
       }
     }
