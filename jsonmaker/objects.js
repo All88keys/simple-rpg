@@ -6,6 +6,9 @@ function player(x,y){
   this.expectedY = y;
   this.char = "☻";
   this.color = 'lime';
+  this.inventory ={
+    wall: 30,
+  }
 }
 
 function wall(x,y){

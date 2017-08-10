@@ -22,11 +22,12 @@ function physics() {
         free = false;
       }
     }
-    if (free) {
+    if (free && objects[0].inventory.wall>0) {
       mouse.color = "lime";
       if(mouse.clicked){
         objects.splice(1, 0, new wall(mouse.xcoord, mouse.ycoord));
         placeNoise.play();
+        objects[0].inventory.wall--;
       }
     }
 

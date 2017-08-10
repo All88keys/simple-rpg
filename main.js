@@ -70,7 +70,7 @@ function input() {
 
 var count = 0;
 function update(){
-  ctx.font = "500 "+blockSize+ "px Courier New"; //font | Lucida Console | Courier New
+  ctx.font = "500 "+blockSize+ "px Lucida Console"; //font | Lucida Console | Courier New
   ctx.beginPath();
   ctx.fillStyle = 'black';
   ctx.fillRect(0,0,c.width,c.height);
